@@ -1,0 +1,62 @@
+import { Box } from "@mui/material"
+import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import { borderRadius, styled } from "@mui/system";
+import { Controlled as ControlledEditor } from "react-codemirror2";
+
+const Heading = styled(Box)`
+    background: #1d1e22;
+    display:flex;
+    padding:9px 12px;
+
+`
+
+const Header = styled(Box)`
+    display:flex;
+    justify-content:space-between;
+    background-color:#060606;
+    color:#AAAEBC;
+    font-weight:700;
+    user-select:none;
+`
+
+const Container = styled(Box)`
+    flex-grow:1;
+    flex-basic:0;
+    display:flex;
+    flex-direction:column;
+    padding:0 8px 8px;
+`
+
+
+const Editor = ({heading,icon,color}) => {
+    return (
+        <Container>
+            <Header>
+                <Heading>
+                        <Box component="span" style={{
+                            background: color,
+                            height: 20,
+                            width: 20,
+                            display: "flex",
+                            color: "#000",
+                            placeContent: 'center',
+                            borderRadius: 5,
+                            paddingBottom: 2,
+                            marginRight:5
+                            
+                        }}>
+                            {icon}
+                        </Box>
+                    {heading}
+                </Heading>
+                <CloseFullscreenIcon
+                    fontSize="small"
+                    style={{alignSelf:'center'}}
+                />
+            </Header>
+            <ControlledEditor/>
+        </Container>
+    )
+}
+
+export default Editor;
