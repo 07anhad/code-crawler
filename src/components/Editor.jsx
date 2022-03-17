@@ -44,7 +44,8 @@ const Editor = ({ heading, icon, color, language, value, onChange }) => {
     }
 
     return (
-        <Container>
+        <Container style={open ? null : { flexGrow: 0 }}>
+            
             <Header>
                 <Heading>
                         <Box component="span" style={{
@@ -64,8 +65,11 @@ const Editor = ({ heading, icon, color, language, value, onChange }) => {
                     {heading}
                 </Heading>
                 <CloseFullscreenIcon
+                    cursor='pointer'
                     fontSize="small"
-                    style={{alignSelf:'center'}}
+                    style={{ alignSelf: 'center' }}
+                    onClick={() => setOpen(prevState => !prevState)}
+                    
                 />
             </Header>
             <ControlledEditor
@@ -74,6 +78,7 @@ const Editor = ({ heading, icon, color, language, value, onChange }) => {
                 onBeforeChange ={handleChange}
 
                 options={{
+                    autocorrect: true,
                     lineWrapping: true,
                     lint: true,
                     mode: language,
