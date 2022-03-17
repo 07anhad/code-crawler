@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box } from "@mui/material"
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import { borderRadius, styled } from "@mui/system";
@@ -6,7 +7,8 @@ import 'codemirror/theme/material.css';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/xml/xml'
 import 'codemirror/mode/css/css'
-import 'codemirror/mode/javascript/javascript'
+import 'codemirror/mode/javascript/javascript';
+import '../App.css'
 
 const Heading = styled(Box)`
     background: #1d1e22;
@@ -33,7 +35,9 @@ const Container = styled(Box)`
 `
 
 
-const Editor = ({ heading, icon, color, language, value, onChange}) => {
+const Editor = ({ heading, icon, color, language, value, onChange }) => {
+    
+    const [open, setOpen] = useState(true)
     
     const handleChange = (editor,data,value) => {
         onChange(value);
