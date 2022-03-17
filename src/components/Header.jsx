@@ -6,7 +6,8 @@ import styled from "@emotion/styled";
 const Container = styled(AppBar)`
     background: #060606;
     height: 9vh;
-    position:static
+    position:static;
+    border-bottom:1px solid #2f2f2f;
 `
 
 const Header = () => {

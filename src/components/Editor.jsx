@@ -2,6 +2,11 @@ import { Box } from "@mui/material"
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
 import { borderRadius, styled } from "@mui/system";
 import { Controlled as ControlledEditor } from "react-codemirror2";
+import 'codemirror/theme/material.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/xml/xml'
+import 'codemirror/mode/css/css'
+import 'codemirror/mode/javascript/javascript'
 
 const Heading = styled(Box)`
     background: #1d1e22;
@@ -28,7 +33,12 @@ const Container = styled(Box)`
 `
 
 
-const Editor = ({heading,icon,color}) => {
+const Editor = ({ heading, icon, color, language, value, onChange}) => {
+    
+    const handleChange = (editor,data,value) => {
+        onChange(value);
+    }
+
     return (
         <Container>
             <Header>
@@ -54,7 +64,19 @@ const Editor = ({heading,icon,color}) => {
                     style={{alignSelf:'center'}}
                 />
             </Header>
-            <ControlledEditor/>
+            <ControlledEditor
+                
+                value={value}
+                onBeforeChange ={handleChange}
+
+                options={{
+                    lineWrapping: true,
+                    lint: true,
+                    mode: language,
+                    lineNumbers: true,
+                    theme:'material'
+                }}
+            />
         </Container>
     )
 }
